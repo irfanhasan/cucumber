@@ -1,8 +1,12 @@
-sudo: required
-
-services:
-  - docker
-
+language: java
+install:
+- bash install.sh
 script:
-  - ./scripts/docker-run Dockerfile.cucumber-build make
-  - cd gherkin/dotnet && ../../scripts/docker-run ../../Dockerfile.cucumber-build-dotnet make
+- bash test.sh
+before_script:
+- bash pull.sh
+after_success:
+- bash push.sh
+env:
+  global:
+    secure: pDwId5H4ZtBD1hpQPL7D7gOMrb+haj6Fu1he6aq6p/dmOeM9mk7yJ83MLzdieOvVMdvYqjMuUmASYX96GCE9YP3n1J+0AmyPmyOs36NaE/aAT90RBZ16W6yMiPtcK1SdF7khKP5rPo385s4BHouoEEP6d5en8NOsvnDGluQ255TPY3T6IfGgQGYhfY5zcU0ZaNiCEFmDbQpZ6ITiy7q4QLYjicVTW2yuOTl4F0l+qjocg1LPPRH6wCBs5j/FTa3BZhJ/TgsAhbClbqIgHgMSPbW1hci1LFyLzqrE34sX3by1qX1eMPnhYl9YGwVStSiDhNO/iruZEv8y3DrnbGBRbjipIQ0SUamrZfCnSTzwm2ivoRg1daGHAClx6s0RkeKyNAaMMnQJ30rKDpn4yDKrcm3d6cRR/BmGF6Dbm8cWL1MtNazeHmoofJjpWg0GNgp2f3ctpZua4c0ekhYhwy+DQa+ntC1i5leM5VvefYqsUskcI2B9ojWKJQMdntK2fBjo2nl92P1/thrxUkACsk7bIioewd9U2z2sCn6BkmZIwqguoK7LZHof3aHRZlbn761Qd4qM0vVLNEjVC/DVcGsERQWi8iJQcc3wbhP0InbvqO0vocvuh72qpXyyJQMYuif25neg5Rj4tFjElnVoszezPu/XzsThjt0T3ywk4+m2zCk=
